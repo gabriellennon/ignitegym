@@ -1,18 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import { VStack, Image, Text, Center, Heading, ScrollView } from 'native-base';
 
-import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
 import LogoSvg from '@assets/logo.svg';
 import BackgroundImg from '@assets/background.png';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 
-export function SignIn(){
+export function SignUp(){
+    const navigation = useNavigation();
 
-    const navigation = useNavigation<AuthNavigatorRoutesProps>();
-
-    function handleNewAccount(){
-        navigation.navigate('signUp')
+    function handleGoBack(){
+        navigation.goBack();
     }
 
     return (
@@ -20,7 +18,6 @@ export function SignIn(){
             <VStack flex={1} px={10} pb={16}>
                 <Image 
                     source={BackgroundImg}
-                    //Ele considera que essa imagem é padrao, e ai o React native carrega mais rápido essa imagem, e ele memoriza
                     defaultSource={BackgroundImg}
                     alt="Pessoas treinando"
                     resizeMode="contain"
@@ -36,8 +33,12 @@ export function SignIn(){
 
                 <Center>
                     <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
-                        Acesse sua conta
+                        Crie sua conta
                     </Heading>
+
+                    <Input 
+                        placeholder="Nome"
+                    />
 
                     <Input 
                         placeholder="E-mail" 
@@ -50,20 +51,15 @@ export function SignIn(){
                         secureTextEntry
                     />
 
-                    <Button title="Acessar" />
+                    <Button title="Criar e acessar" />
                 </Center>
 
-                <Center mt={24}>
-                    <Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">
-                        Ainda não tem acesso?
-                    </Text>
-
-                    <Button 
-                        title="Criar conta" 
-                        variant="outline"
-                        onPress={handleNewAccount}
-                    />
-                </Center>
+                <Button 
+                    mt={24}
+                    title="Voltar para o login" 
+                    variant="outline"
+                    onPress={handleGoBack}
+                />
             </VStack>
         </ScrollView>
     )
