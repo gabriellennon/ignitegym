@@ -1,9 +1,37 @@
-import { Center, Text } from "native-base";
+import { useState } from "react";
+import { Heading, VStack, SectionList } from "native-base";
+import { HistoryCard } from "@components/HistoryCard";
+import { ScreenHeader } from "@components/ScreenHeader";
 
 export function History(){
+    const [exercises, setExercises] = useState([
+        {
+            title: "24.06.23",
+            data: ['Puxada frontal', 'Remada unilateral']
+        },
+        {
+            title: "30.06.23",
+            data: ['Puxada frontal']
+        },
+    ]);
+
     return(
-        <Center flex={1}>
-            <Text color="white">History</Text>
-        </Center>
+        <VStack flex={1}>
+            <ScreenHeader title="Histórico de Exercícios" />
+
+            <SectionList 
+                sections={exercises}
+                keyExtractor={item => item}
+                renderItem={({ item }) => (
+                    <HistoryCard />
+                )}
+                renderSectionHeader={({ section }) => (
+                    <Heading color="gray.200" fontSize="md" mt={10} mb={3}>
+                        {section.title}
+                    </Heading>
+                )}
+                px={8}
+            />
+        </VStack>
     )
 }
