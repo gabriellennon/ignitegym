@@ -32,6 +32,7 @@ export function Exercise(){
                     <Heading 
                         color="gray.100" 
                         fontSize="lg" 
+                        fontFamily="heading"
                         // Quando o texto for grande ele quebra de linha sem influenciar a div da frente
                         flexShrink={1}
                     >
